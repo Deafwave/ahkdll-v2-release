@@ -18,7 +18,7 @@ CritObj := CriticalObject(defaultObject)
 ;; Compiled: Warning: This variable has not yet been assigned a value Specifically local aScript at L#77 @ https://i.imgur.com/gkmXBEh.png
 ; Import Code String
 ; #include <exampleThree>
-; exampleThread := AHKThread(CreateScript("ExampleLibrary:ExampleLibraryEnd") exampleThreeString, "" ObjPtr(CritObj))
+exampleThread := AHKThread(CreateScript("ExampleLibrary:ExampleLibraryEnd") exampleThreeString, "" ObjPtr(CritObj))
 
 ;; (KINDA) WORKING VARIANT (ONE ERROR AFTER COMPILE)
 ;; Non-compiled: Working as Expected
