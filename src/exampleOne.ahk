@@ -7,18 +7,13 @@ defaultObject := {
 CritObj := CriticalObject(defaultObject)
 
 ;;;;;;;;
-;; Non-compiled: MessageBox with "Manipulated CritObj String"
-;; Compiled: Script File Not Found exampleTwo.ahk
-; exampleThread := AHKThread(A_ScriptDir "\lib\exampleTwo.ahk", "" ObjPtr(CritObj))
-
-;;;;;;;;
 
 ;; (KINDA) WORKING VARIANT (ONE ERROR AFTER COMPILE)
 ;; Non-compiled: Working as Expected
 ;; Compiled: Warning: This variable has not yet been assigned a value Specifically local aScript at L#77 @ https://i.imgur.com/gkmXBEh.png
-; Import Code String
+;; Import Code String
 ; #include <exampleThree>
-exampleThread := AHKThread(CreateScript("ExampleLibrary:ExampleLibraryEnd") exampleThreeString, "" ObjPtr(CritObj))
+; exampleThread := AHKThread(CreateScript("ExampleLibrary:ExampleLibraryEnd"), "" ObjPtr(CritObj))
 
 ;; (KINDA) WORKING VARIANT (ONE ERROR AFTER COMPILE)
 ;; Non-compiled: Working as Expected
@@ -35,7 +30,7 @@ exampleThread := AHKThread(CreateScript("ExampleLibrary:ExampleLibraryEnd") exam
 ;;   This variable has not been assigned a value
 ;;   Specifically: local aScript (L#27) @ https://i.imgur.com/9DThmyq.png
 ;;   Missing "}" somewhere
-; exampleThread := AHKThread(CreateScript("ExampleTwoMemory{}"), "" ObjPtr(CritObj))
+exampleThread := AHKThread(CreateScript("ExampleTwoMemory{}"), "" ObjPtr(CritObj))
 
 ;; Non-compiled: Nothing happens
 ;; Compiled: Call to nonexistent function
@@ -61,14 +56,14 @@ Return
 ; ExampleFourMemoryEnd:
 ; Return
 
-; ExampleTwoMemory() {
-;     #include <exampleLibrary>
-;     #include <exampleTwo>
-; }
+ExampleTwoMemory() {
+    MsgBox("test trough pipe")
+    Return
+}
 
 ;; Seems to cause strange Return issues, probably because of my bypass placeholder
-ExampleLibrary:
-placeholder := "So label isn't looking at a function, and is not a return to prevent code execution"
-#include <exampleLibrary>
-ExampleLibraryEnd:
-Return
+; ExampleLibrary:
+; placeholder := "So label isn't looking at a function, and is not a return to prevent code execution"
+; #include <exampleLibrary>
+; ExampleLibraryEnd:
+; Return
