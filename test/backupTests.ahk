@@ -23,14 +23,14 @@ CritObj := CriticalObject(defaultObject)
 ;; (KINDA) WORKING VARIANT (ONE ERROR AFTER COMPILE)
 ;; Non-compiled: Working as Expected
 ;; Compiled: local aScript error at L#73 but it still executes @ https://i.imgur.com/ewxgNjv.png
-; exampleThread := AHKThread(CreateScript("ExampleFourMemory:ExampleFourMemoryEnd"), "" ObjPtr(CritObj))
+exampleThread := AHKThread(CreateScript("ExampleFourMemory:ExampleFourMemoryEnd"), "" ObjPtr(CritObj))
 
 ;; Non-compiled: Nothing happens
 ;; Compiled: Warning in #include file "CreateScript.ahk"
 ;;   This variable has not been assigned a value
 ;;   Specifically: local aScript (L#27) @ https://i.imgur.com/9DThmyq.png
 ;;   Missing "}" somewhere
-exampleThread := AHKThread(CreateScript("ExampleTwoMemory{}"), "" ObjPtr(CritObj))
+; exampleThread := AHKThread(CreateScript("ExampleTwoMemory{}"), "" ObjPtr(CritObj))
 
 ;; Non-compiled: Nothing happens
 ;; Compiled: Call to nonexistent function
@@ -49,21 +49,21 @@ Return
 ; Return
 
 ;; Seems to cause strange Return issues, probably because of my bypass placeholder
-; ExampleFourMemory:
-; placeholder := "So label isn't looking at a function, and is not a return to prevent code execution"
-; #include <exampleLibrary>
-; #include <exampleTwo>
-; ExampleFourMemoryEnd:
-; Return
+ExampleFourMemory:
+placeholder := "So label isn't looking at a function, and is not a return to prevent code execution"
+#include <funcLib>
+#include <exampleTwo>
+ExampleFourMemoryEnd:
+Return
 
-ExampleTwoMemory() {
-    MsgBox("test trough pipe")
-    Return
-}
+; ExampleTwoMemory() {
+;     MsgBox("test trough pipe")
+;     Return
+; }
 
 ;; Seems to cause strange Return issues, probably because of my bypass placeholder
 ; ExampleLibrary:
 ; placeholder := "So label isn't looking at a function, and is not a return to prevent code execution"
-; #include <exampleLibrary>
+; #include <funcLib>
 ; ExampleLibraryEnd:
 ; Return

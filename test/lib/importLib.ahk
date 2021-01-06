@@ -1,6 +1,4 @@
-﻿; src/exampleTwo.ahk
-
-; #include <exampleLibrary>
+﻿#include <funcLib>
 
 CritObj := CriticalObject(A_Args[1])
 CritObj.testVar := "[SUCCESS] Manipulated CritObj String"

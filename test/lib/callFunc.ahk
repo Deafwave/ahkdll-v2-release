@@ -1,0 +1,1 @@
+MessageBoxFunction(CritObj.testVar)
