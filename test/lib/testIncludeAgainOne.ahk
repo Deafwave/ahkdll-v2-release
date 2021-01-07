@@ -1,0 +1,2 @@
+#IncludeAgain <funcLib>
+MessageBoxFunction("testIncludeOne")
