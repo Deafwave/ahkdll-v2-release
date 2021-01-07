@@ -4,7 +4,7 @@ defaultObject := {
 
 CritObj := CriticalObject(defaultObject)
 
-exampleThread := AHKThread(CreateScript("ExampleFourMemory:ExampleFourMemoryEnd", "AutoHotkey"), "" ObjPtr(CritObj))
+exampleThread := AHKThread(CreateScript("ExampleFourMemory:ExampleFourMemoryEnd", "oCKArYwIpx"), "" ObjPtr(CritObj))
 
 Sleep(2000) ; Automatically Exits After 2 Seconds
 Return

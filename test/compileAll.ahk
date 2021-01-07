@@ -1,4 +1,4 @@
-; TODO: Clean up
+; ; TODO: Clean up
 scriptName := "testFunc"
 
 scriptDir := A_ScriptDir "\"
@@ -14,8 +14,8 @@ binToUse := x64w "AutoHotkey.exe"
 
 RunWait(Ahk2ExePath " " Ahk2ExeScript " /in " inScript " /out " outScript " /bin " binToUse)
 
-;;;;;;;;;
-;;;;;;;;;
+; ;;;;;;;;;
+; ;;;;;;;;;
 
 scriptName := "testFuncCompress"
 
@@ -47,10 +47,11 @@ Ahk2ExePath := compilerDir "Ahk2Exe.exe"
 Ahk2ExeScript := compilerDir "Ahk2Exe.ahk" ; This necessary?
 inScript := scriptDir scriptName ".ahk"
 outScript := scriptDir "compiled\" scriptName ".exe"
-binToUse := x64w "AutoHotkey.exe"
+binToUse := x64w "AutoHotkey.exe" ; using compilerDir "CustomBin.exe" caused an error
+customBinToUse := compilerDir "AutoHotkey.exe"
 compress := 1
 
-RunWait(Ahk2ExePath " " Ahk2ExeScript " /in " inScript " /out " outScript " /NoDecompile /bin " binToUse " /compress " compress)
+RunWait(Ahk2ExePath " " Ahk2ExeScript " /in " inScript " /out " outScript " /NoDecompile /pass asdasd /bin " customBinToUse " /compress " compress)
 
 ;;;;;;;;;
 ;;;;;;;;;
